@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "rumq1vlnm",
+    "createdAt": "2026-06-27T11:58:37.446Z",
+    "updatedAt": "2026-06-27T11:58:37.446Z",
+    "userId": "3vbkcec7i",
+    "title": "final exam tommarow",
+    "category": "Study",
+    "difficulty": "Hard",
+    "estimatedTime": 180,
+    "priority": 8,
+    "subtasks": [
+      {
+        "title": "Review requirements and references",
+        "completed": false
+      },
+      {
+        "title": "Draft outline or design foundation",
+        "completed": false
+      },
+      {
+        "title": "Execute core implementation",
+        "completed": false
+      },
+      {
+        "title": "Review and polish details",
+        "completed": false
+      }
+    ],
+    "deadline": "2026-06-27T11:59:00.000Z"
+  }
+]

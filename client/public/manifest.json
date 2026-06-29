@@ -1,0 +1,18 @@
+{
+  "name": "Planr: AI-Powered Life Saver",
+  "short_name": "Planr",
+  "description": "An AI-powered productivity manager that schedules, prioritizes, and reschedules your tasks dynamically.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a13",
+  "theme_color": "#070a13",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

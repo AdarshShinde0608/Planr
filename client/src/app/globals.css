@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Theme (Default) */
+    --background: 224 46% 5%;
+    --foreground: 210 20% 98%;
+    
+    --card: 224 42% 9%;
+    --card-foreground: 210 20% 98%;
+    
+    --popover: 224 42% 9%;
+    --popover-foreground: 210 20% 98%;
+    
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 224 25% 14%;
+    --secondary-foreground: 210 20% 98%;
+    
+    --muted: 224 25% 14%;
+    --muted-foreground: 224 12% 65%;
+    
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    
+    --border: 224 24% 16%;
+    --input: 224 24% 16%;
+    --ring: 262 83% 58%;
+    --radius: 0.6rem;
+    
+    --chart-1: 220 79% 46%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Legacy design token mapping */
+    --bg-app:          hsl(var(--background));
+    --bg-card:         hsl(var(--card));
+    --bg-card-hover:   hsl(var(--secondary));
+    --bg-input:        hsl(var(--background));
+    --bg-navbar:       hsl(var(--card));
+    --text-main:       hsl(var(--foreground));
+    --text-muted:      hsl(var(--muted-foreground));
+    --text-subtle:     hsl(var(--muted-foreground) / 0.8);
+    --border-color:    hsl(var(--border));
+    --border-active:   hsl(var(--primary));
+    --accent-primary:  hsl(var(--primary));
+    --accent-secondary:hsl(var(--accent));
+    --accent-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    --shadow-card:     0 4px 16px rgba(0, 0, 0, 0.25);
+    --shadow-navbar:   0 2px 12px rgba(0, 0, 0, 0.2);
+    --timeline-fixed:  rgba(41, 75, 111, 0.18);
+    --timeline-task:   rgba(138, 96, 169, 0.14);
+    
+    --success: 142.1 76.2% 36.3%;
+    --danger:  0 84.2% 60.2%;
+    --warning: 38 92% 50%;
+  }
+
+  .light-theme {
+    /* Style Guidelines (Light Theme):
+       - Primary color: Deep blue (#294B6F -> HSL 211 46% 30%)
+       - Background color: Very light blue-gray (#F0F4F8 -> HSL 210 24% 96%)
+       - Accent color: Muted purple (#8A60A9 -> HSL 274 30% 52%)
+       - Font: 'Inter' sans-serif
+    */
+    --background: 210 24% 96%;
+    --foreground: 211 46% 15%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 211 46% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 211 46% 15%;
+    
+    --primary: 211 46% 30%;
+    --primary-foreground: 210 24% 96%;
+    
+    --secondary: 210 20% 90%;
+    --secondary-foreground: 211 46% 30%;
+    
+    --muted: 210 20% 90%;
+    --muted-foreground: 211 15% 45%;
+    
+    --accent: 274 30% 52%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    
+    --border: 210 20% 86%;
+    --input: 210 20% 86%;
+    --ring: 274 30% 52%;
+
+    --bg-app:          hsl(var(--background));
+    --bg-card:         hsl(var(--card));
+    --bg-card-hover:   hsl(var(--secondary));
+    --bg-input:        hsl(var(--background));
+    --bg-navbar:       hsl(var(--card));
+    --text-main:       hsl(var(--foreground));
+    --text-muted:      hsl(var(--muted-foreground));
+    --text-subtle:     hsl(var(--muted-foreground) / 0.8);
+    --border-color:    hsl(var(--border));
+    --border-active:   hsl(var(--primary));
+    --accent-primary:  hsl(var(--primary));
+    --accent-secondary:hsl(var(--accent));
+    --accent-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    --shadow-card:     0 4px 12px rgba(41, 75, 111, 0.05), 0 1px 3px rgba(41, 75, 111, 0.02);
+    --shadow-navbar:   0 2px 8px rgba(41, 75, 111, 0.03);
+    --timeline-fixed:  rgba(41, 75, 111, 0.06);
+    --timeline-task:   rgba(138, 96, 169, 0.06);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-foreground;
+    font-family: var(--font-display);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Mapped UI selectors bridged to Tailwind classes with smooth transitions */
+.glass-card {
+  @apply bg-card text-card-foreground border border-border rounded-lg shadow-sm p-6 transition-all duration-300 ease-in-out hover:border-primary/40 hover:shadow-md;
+}
+
+.btn-primary {
+  @apply bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-md cursor-pointer inline-flex items-center gap-2 transition-all duration-200 ease-in-out hover:bg-primary/90 hover:scale-[1.01] active:scale-[0.99] shadow-sm;
+  background-image: var(--accent-gradient);
+}
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  @apply bg-transparent text-foreground border border-border font-semibold px-5 py-2.5 rounded-md cursor-pointer inline-flex items-center gap-2 transition-all duration-200 ease-in-out hover:bg-secondary hover:border-primary/30;
+}
+
+.form-input {
+  @apply w-full px-3.5 py-2 bg-background border border-border rounded-md text-foreground font-sans text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200 ease-in-out;
+}
+.form-input::placeholder {
+  @apply text-muted-foreground/60;
+}
+.form-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.4);
+  cursor: pointer;
+}
+
+/* Layout wrapper rules */
+.app-container {
+  @apply flex min-h-screen w-full;
+}
+
+.main-wrapper {
+  @apply flex-1 flex flex-col min-h-screen w-full transition-all duration-300 ease-in-out;
+}
+
+.main-wrapper.has-sidebar {
+  @apply pl-[260px];
+}
+
+.main-wrapper.no-sidebar {
+  @apply pl-0;
+}
+
+.page-content {
+  @apply flex-1 w-full;
+}
+
+/* Sidebar structure */
+.sidebar {
+  @apply w-[260px] h-screen fixed top-0 left-0 bg-card border-r border-border flex flex-col p-6 z-[100] transition-transform duration-300 ease-in-out;
+}
+
+.sidebar-logo {
+  @apply mb-10;
+}
+
+.sidebar-links {
+  @apply flex flex-col gap-2;
+}
+
+.sidebar-link {
+  @apply flex items-center gap-3.5 px-4 py-3 rounded-md font-semibold text-muted-foreground transition-all duration-200 ease-in-out no-underline hover:bg-secondary hover:text-foreground;
+}
+
+.sidebar-link.active {
+  @apply bg-secondary text-foreground;
+}
+
+.sidebar-link-icon {
+  @apply text-lg;
+}
+
+/* Bottom navigation for mobile */
+.bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 h-[64px] bg-card border-t border-border flex justify-around items-center z-[100] lg:hidden px-4 shadow-lg;
+}
+
+.bottom-nav-link {
+  @apply flex flex-col items-center justify-center gap-1 text-[10px] font-bold text-muted-foreground transition-all duration-200 no-underline;
+}
+
+.bottom-nav-link.active {
+  @apply text-primary;
+}
+
+.bottom-nav-icon {
+  @apply text-xl;
+}
+
+/* Responsive visibility rules */
+@media (max-width: 1024px) {
+  .sidebar {
+    @apply hidden;
+  }
+  .main-wrapper.has-sidebar {
+    @apply pl-0 pb-[64px]; /* Make space for bottom nav */
+  }
+  .top-header {
+    @apply justify-between; /* Space logo on left and profile on right */
+  }
+}
+
+@media (min-width: 1025px) {
+  .bottom-nav {
+    @apply hidden;
+  }
+  .mobile-logo {
+    @apply hidden;
+  }
+}
+
+/* Header updates */
+.top-header {
+  @apply h-[73px] flex justify-end items-center px-8 border-b border-border bg-card shadow-sm sticky top-0 z-[90] transition-all duration-300 ease-in-out;
+}
+
+.logo {
+  @apply font-bold text-xl text-primary flex items-center gap-2 transition-transform duration-200 hover:scale-[1.02];
+}
+
+.dashboard-grid {
+  @apply grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto my-8 px-6;
+}
+
+.timeline-container {
+  @apply flex flex-col gap-4 relative pl-5 border-l-2 border-border mt-4;
+}
+.timeline-block {
+  @apply relative p-4 rounded-md border border-border transition-all duration-200 hover:shadow-sm;
+}
+.timeline-block::before {
+  content: '';
+  @apply absolute -left-[27px] top-6 w-3 h-3 rounded-full bg-border border-2 border-background transition-colors duration-200;
+}
+.timeline-block.fixed {
+  background-color: var(--timeline-fixed);
+  @apply border-primary/20;
+}
+.timeline-block.fixed::before {
+  @apply bg-primary;
+}
+.timeline-block.task {
+  background-color: var(--timeline-task);
+  @apply border-accent/20;
+}
+.timeline-block.task::before {
+  @apply bg-accent;
+}
+.timeline-time {
+  @apply text-xs font-semibold text-primary mb-1;
+}
+.timeline-block.task .timeline-time {
+  @apply text-accent;
+}
+.timeline-title {
+  @apply text-base font-semibold text-foreground;
+}
+
+.heatmap {
+  @apply grid grid-cols-7 gap-1.5 mt-4;
+}
+.heatmap-cell {
+  @apply aspect-square bg-muted rounded-[4px] transition-all duration-200 cursor-help hover:scale-105;
+}
+.heatmap-cell.level-1 { @apply bg-accent/25; }
+.heatmap-cell.level-2 { @apply bg-accent/50; }
+.heatmap-cell.level-3 { @apply bg-accent/75; }
+.heatmap-cell.level-4 { @apply bg-accent; }
+
+.badge {
+  @apply inline-block px-2.5 py-0.5 rounded text-xs font-bold transition-all duration-200;
+}
+.badge-danger  { @apply bg-red-500/10 text-red-500; }
+.badge-warning { @apply bg-amber-500/10 text-amber-500; }
+.badge-success { @apply bg-emerald-500/10 text-emerald-500; }
+
+.card-row {
+  @apply p-3 rounded-md border border-border bg-background transition-all duration-200 hover:bg-secondary hover:border-primary/20;
+}
+
+.pulse {
+  animation: pulse-animation 2s infinite ease-in-out;
+}
+@keyframes pulse-animation {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.welcome-page {
+  @apply min-h-[calc(100vh-73px)] grid grid-cols-1 md:grid-cols-2;
+}
+
+.gradient-text {
+  background-image: var(--accent-gradient);
+  @apply bg-clip-text text-transparent;
+}
