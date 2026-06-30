@@ -9,7 +9,7 @@ if (typeof window !== 'undefined' && !process.env.NEXT_PUBLIC_API_URL) {
   if (isLocal) {
     API_BASE = `http://${hostname}:5000/api`;
   } else {
-    API_BASE = 'https://planr-sooty.vercel.app/api'; // Safe fallback for production deployments
+    API_BASE = 'https://planrserver.vercel.app/api'; // Safe fallback for production deployments
   }
 }
 
