@@ -32,6 +32,8 @@ app.use(async (req, res, next) => {
 // Enable CORS for frontend client
 const allowedOrigins = [
   FRONTEND_URL,
+  'https://planrclient.vercel.app',
+  'https://planr-lovat.vercel.app',
   'http://localhost:3000',
   'http://127.0.0.1:3000'
 ];
