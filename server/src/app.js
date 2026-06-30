@@ -31,7 +31,11 @@ app.use(async (req, res, next) => {
 
 // Enable CORS for frontend client
 app.use(cors({
+<<<<<<< HEAD
   origin: FRONTEND_URL,
+=======
+  origin: 'https://planr-lovat.vercel.app',
+>>>>>>> 841f238dfc6e28a45f26011a4b7859dfa7aa24fb
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
