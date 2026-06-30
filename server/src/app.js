@@ -14,8 +14,8 @@ const assistantRoutes = require('./routes/assistantRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://planr-lovat.vercel.app';
+const PORT = process.env.PORT || 0;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://planrclient.vercel.app';
 
 // Lazy database connection middleware for serverless invocations
 app.use(async (req, res, next) => {
@@ -30,8 +30,27 @@ app.use(async (req, res, next) => {
 });
 
 // Enable CORS for frontend client
+const allowedOrigins = [
+  FRONTEND_URL,
+  'http://localhost:3000',
+  'http://127.0.0.1:3000'
+];
+
 app.use(cors({
-  origin: FRONTEND_URL,
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+        // Normalize trailing slashes to prevent mismatches (e.g. 'domain.com/' vs 'domain.com')
+    const cleanOrigin = origin.replace(/\/$/, '');
+    const cleanAllowed = allowedOrigins.map(o => o ? o.replace(/\/$/, '') : '');
+    const isLocal = cleanOrigin.startsWith('http://localhost') || 
+                    cleanOrigin.startsWith('http://127.0.0.1') ||
+                    /^http:\/\/(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)/.test(cleanOrigin);
+    if (isLocal || cleanAllowed.includes(cleanOrigin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -77,6 +96,6 @@ if (require.main === module) {
       console.log(`🚀 Planr Backend running on port ${PORT}`);
     });
   }
-  
+
   startServer();
 }

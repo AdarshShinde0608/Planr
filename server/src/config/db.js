@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const { LocalModel } = require('./localDb');
-
-let isMongoConnected = false;
-
 const connectDB = async () => {
   if (!process.env.MONGODB_URI) {
     console.warn('⚠️ No MONGODB_URI found in environment. Running in Local JSON Database mode.');
-    isMongoConnected = false;
+    return;
+  }
+  if (mongoose.connection.readyState >= 1) {
     return;
   }
   try {
@@ -14,11 +13,9 @@ const connectDB = async () => {
     await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 3000
     });
-    isMongoConnected = true;
     console.log('✅ Connected to MongoDB successfully.');
   } catch (error) {
     console.warn('⚠️ MongoDB connection failed. Running in Local JSON Database mode.');
-    isMongoConnected = false;
   }
 };
 
@@ -31,7 +28,8 @@ class DynamicModel {
   }
 
   _getModel() {
-    if (isMongoConnected) {
+    const isConnected = process.env.MONGODB_URI && mongoose.connection.readyState >= 1;
+    if (isConnected) {
       if (!this._mongooseModel) {
         try {
           this._mongooseModel = mongoose.model(this.modelName);
@@ -88,6 +86,8 @@ const getModel = (modelName, schemaDefinition) => {
 module.exports = {
   connectDB,
   getModel,
-  isMongoConnected: () => isMongoConnected
+  isMongoConnected: () => {
+    return !!process.env.MONGODB_URI && mongoose.connection.readyState >= 1;
+  }
 };
 
