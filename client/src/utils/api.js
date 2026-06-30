@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://planr-sooty.vercel.app/api'; // Default to production API if not set
 
 // Fetch helper with JWT header inclusion
 export async function apiFetch(endpoint, options = {}) {

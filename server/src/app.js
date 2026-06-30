@@ -15,6 +15,7 @@ const notificationRoutes = require('./routes/notificationRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://planr-lovat.vercel.app';
 
 // Lazy database connection middleware for serverless invocations
 app.use(async (req, res, next) => {
@@ -30,7 +31,7 @@ app.use(async (req, res, next) => {
 
 // Enable CORS for frontend client
 app.use(cors({
-  origin: 'https://planr-lovat.vercel.app/',
+  origin: FRONTEND_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -51,6 +52,11 @@ app.use('/api/notifications', notificationRoutes);
 // Simple healthcheck endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date() });
+});
+
+// Simple API info endpoint for deployment verification
+app.get('/api', (req, res) => {
+  res.json({ status: 'api available', version: '1.0.0' });
 });
 
 // Global Error Handler
