@@ -30,7 +30,7 @@ app.use(async (req, res, next) => {
 
 // Enable CORS for frontend client
 app.use(cors({
-  origin: '*', // in production, set to client origin (e.g. Vercel)
+  origin: 'https://planr-lovat.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
